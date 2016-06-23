@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  //h1= title
+  //p Welcome to #{title}
+  p 年齢
+  select(name='example')
+    option(value='サンプル1') 21
+    option(value='サンプル2') 22
+    option(value='サンプル3') 23
+  
+  p 家賃
+  input(type='text', name='name', size='30', maxlength='20')
+  br
+  br
+  input(type='submit', value='OK')
