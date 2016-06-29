@@ -1,0 +1,11 @@
+extends layout
+
+block scripts
+  script(language='javascript', type='text/javascript', src="../scripts/result.js", id="main", data-years=years, data-expenses=expenses)
+
+block content
+    h1 Tortie
+    p 年齢： #{age}
+    p 家賃： #{rent}
+    
+    #jqPlot-sample(style='height: 300px; width: 600px;')
