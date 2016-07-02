@@ -1,4 +1,5 @@
 var express = require('express');
+var calc = require('../lib/calc');
 var router = express.Router();
 
 var expensesByYear = [];
@@ -9,9 +10,9 @@ router.post('/', function(req, res, next) {
     var years = [];
     var expenses = [];
 
-    for (var i = 0; i < 50; i++) {
-        years.push(age + (i + 1));
-        expenses.push(((i + 1) * 12) * rent);
+    for (var i = 1; i <= 50; i++) {
+        years.push(age + i);
+        expenses.push(calc.getRentExpense(rent, i));
     }
 
     res.render('result', {
