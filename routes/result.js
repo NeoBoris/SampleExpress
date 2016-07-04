@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
         expenses.push(calc.getRentExpense(rent, i));
     }
 
-    res.render('result', {
+    res.json ({
         rent: req.body.rent,
         age: req.body.age,
         years: years,

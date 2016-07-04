@@ -1,23 +1,25 @@
 extends layout
 
 block scripts
-  script(language='javascript', type='text/javascript', src="/scripts/index.js")
+  script(language='javascript', type='text/javascript', src="https://cdn.plot.ly/plotly-latest.min.js")
+  script(language='javascript', type='text/javascript', src="/scripts/index.js", id="main", data-years=years, data-expenses=expenses)
 
 block content
   h1= title
-  //p Welcome to #{title}
-  form(method='post', action='result')
-    p 年齢
-    select(name='age', required)
-      - for (var i = 21; i < 65; i++) {
-        if i == 30
-          option(value='#{i}', selected) #{i}
-        else
-          option(value='#{i}') #{i}
-      - }
-    
-    p 家賃
-    input(type='text', name='rent', size='30', maxlength='20')
-    br
-    br
-    input(type='submit', value='OK')
+  p 年齢
+  select#age(name='age', required)
+    - for (var i = 21; i < 65; i++) {
+      if i == 30
+        option(value='#{i}', selected) #{i}
+      else
+        option(value='#{i}') #{i}
+    - }
+  
+  p 家賃
+  input#rentExpense(type='text', name='rent', size='30', maxlength='20' value='50000')
+  br
+  br
+
+  input#btn(type='button', value='OK')
+
+  #expenseGraph(style='width: 480px; height: 400px;')
