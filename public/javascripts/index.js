@@ -13,6 +13,10 @@ $(function() {
             },
             timeout: 100000,
             success: function (data) {
+                if (data.errors) {
+                    displayErrors(data.errors);
+                    return;
+                }
                 updateExpenseGraph(data);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -45,5 +49,11 @@ $(function() {
 
         var plotData = [trace];
         Plotly.newPlot('expenseGraph', plotData, layout);
+    }
+
+    function displayErrors(errors) {
+        for (var i in errors) {
+            alert(errors[i].msg + "(" + errors[i].value+ ")");
+        }
     }
 });
