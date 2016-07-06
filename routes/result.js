@@ -18,9 +18,24 @@ router.post('/', function(req, res, next) {
         }
     }
 
+    var loan = Number(req.body.loan);
+    var rate = Number(req.body.rate);
+    var year = Number(req.body.year);
+    var loaninfo = calc.getEqualPaymentsWithInterest(loan, rate, year);
+    var loanExpense = loaninfo[0].payment;
+    var loanExpenses = [];
+    for (var j = 1; j <= 50; j++) {
+        var y = j;
+        if (j > year) {
+            y = year;
+        }
+        loanExpenses.push(loanExpense * (y * 12));
+    }
+
     res.json ({
         years: years,
         expenses: expenses,
+        loanExpenses: loanExpenses,
         errors: errors,
     });
 });

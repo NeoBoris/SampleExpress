@@ -6,7 +6,7 @@ block scripts
 
 block content
   h1= title
-  p 年齢
+  p 年齢：
   select#age(name='age', required)
     - for (var i = 21; i < 65; i++) {
       if i == 30
@@ -15,8 +15,17 @@ block content
         option(value='#{i}') #{i}
     - }
   
-  p 家賃
-  input#rentExpense(type='text', name='rent', size='30', maxlength='20' value='50000')
+  h2 家賃
+  p 家賃：
+  input#rentExpense(type='text', name='rent', size='30', maxlength='10' value='50000')
+
+  h2 ローン
+  p 借入金額(万円)：
+  input#loan(type='text', name='loan', size='30', maxlength='10' value='2000')
+  p 借入金利(年利)：
+  input#rate(type='text', name='rate', size='30', maxlength='10' value='0.8')
+  p 借入期間(年)：
+  input#year(type='text', name='year', size='30', maxlength='2' value='35')
   br
   br
 

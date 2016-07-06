@@ -3,6 +3,9 @@ $(function() {
         var url = '/result';
         var age = $('#age').val();
         var rent = $('#rentExpense').val();
+        var loan = $('#loan').val();
+        var rate = $('#rate').val();
+        var year = $('#year').val();
         $.ajax({
             url: url,
             type: 'POST',
@@ -10,6 +13,9 @@ $(function() {
             data: {
                 rent: rent,
                 age: age,
+                loan: loan * 10000,
+                rate: rate / 100,
+                year: year,
             },
             timeout: 100000,
             success: function (data) {
@@ -28,10 +34,18 @@ $(function() {
     function updateExpenseGraph(data) {
         var years = data.years;
         var expenses = data.expenses;
+        var loanExpenses = data.loanExpenses;
 
         var trace = {
+            name: "賃貸",
             x: years,
             y: expenses,
+            type: 'lines+markers'
+        };
+        var trace2 = {
+            name: "ローン",
+            x: years,
+            y: loanExpenses,
             type: 'lines+markers'
         };
 
@@ -47,7 +61,7 @@ $(function() {
             width: 480
         };
 
-        var plotData = [trace];
+        var plotData = [trace, trace2];
         Plotly.newPlot('expenseGraph', plotData, layout);
     }
 
