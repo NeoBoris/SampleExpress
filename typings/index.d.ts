@@ -1,3 +1,4 @@
+/// <reference path="globals/angular/index.d.ts" />
 /// <reference path="globals/chai/index.d.ts" />
 /// <reference path="globals/express-serve-static-core/index.d.ts" />
 /// <reference path="globals/express-validator/index.d.ts" />

@@ -1,0 +1,17 @@
+{
+  "name": "sample_express",
+  "description": "",
+  "main": "",
+  "authors": [
+    "kido <neoboris12@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/NeoBoris/SampleExpress",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

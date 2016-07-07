@@ -1,35 +1,39 @@
-$(function() {
-    $('#btn').on('click', function(evt) {
-        var url = '/result';
-        var age = $('#age').val();
-        var rent = $('#rentExpense').val();
-        var loan = $('#loan').val();
-        var rate = $('#rate').val();
-        var year = $('#year').val();
-        $.ajax({
-            url: url,
-            type: 'POST',
-            dataType: 'json',
+var tortieApp = angular.module('tortie',[]);
+
+tortieApp.controller('MainController', ['$scope', '$http', function($scope, $http) {
+    $scope.rent = 50000;
+    $scope.loan = 2000;
+    $scope.rate = 0.8;
+    $scope.year = 35;
+    var ages = [];
+    for (var i = 20; i <= 65; i++) {
+        ages.push(i);
+    }
+    $scope.ages = ages;
+    $scope.age = 30;
+    $scope.onClick = function() {
+        $http({
+            method: 'POST',
+            url: '/result',
             data: {
-                rent: rent,
-                age: age,
-                loan: loan * 10000,
-                rate: rate / 100,
-                year: year,
-            },
-            timeout: 100000,
-            success: function (data) {
-                if (data.errors) {
-                    displayErrors(data.errors);
-                    return;
-                }
-                updateExpenseGraph(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");    
+                rent: $scope.rent,
+                age: $scope.age,
+                loan: $scope.loan * 10000,
+                rate: $scope.rate / 100,
+                year: $scope.year,
             }
+        })
+        .success(function(data, status, headers, config){
+            if (data.errors) {
+                displayErrors(data.errors);
+                return;
+            }
+            updateExpenseGraph(data);
+        })
+        .error(function(data, statuc, headers, config) {
+            alert('Error');
         });
-    });
+    };
 
     function updateExpenseGraph(data) {
         var years = data.years;
@@ -70,4 +74,4 @@ $(function() {
             alert(errors[i].msg + "(" + errors[i].value+ ")");
         }
     }
-});
+}]);

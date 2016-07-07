@@ -1,9 +1,10 @@
 doctype html
-html
+html(lang='ja' ng-app='tortie')
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(language='javascript', type='text/javascript', src='/scripts/jquery.min.js')
+    script(language='javascript', type='text/javascript', src='/bower/angular/angular.min.js')
     block scripts
   body
     block content
