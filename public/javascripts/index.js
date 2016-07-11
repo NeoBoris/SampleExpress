@@ -5,6 +5,7 @@ tortieApp.controller('MainController', ['$scope', '$http', function($scope, $htt
     $scope.loan = 2000;
     $scope.rate = 0.8;
     $scope.year = 35;
+    $scope.regex = '\\d+';
     var ages = [];
     for (var i = 20; i <= 65; i++) {
         ages.push(i);

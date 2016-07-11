@@ -1,0 +1,22 @@
+{
+    "message": {
+        "error": {
+
+        },
+        "validationError": {
+            "isNumeric": "数値を入力してください"
+        }
+    },
+    "view": {
+        "index": {
+            "age": "年齢",
+            "rent": "賃貸",
+            "houseRent": "家賃",
+            "loan": "ローン",
+            "loanAmount": "借入金額(万)",
+            "rate": "借入金利(年利)",
+            "loanPeriod": "借入期間(年)",
+            "send": "送信"
+        }
+    }
+}

@@ -7,21 +7,22 @@ block scripts
 block content
   h1= title
   div(ng-controller='MainController')
-    p 年齢：
+    p #{viewMessage.age}:
     select(ng-model="age", ng-options="a for a in ages")
-    h2 賃貸
-    p 家賃：
-    input(tyoe='text' ng-model='rent')
+    h2 #{viewMessage.rent}
+    p #{viewMessage.houseRent}:
+    input(tyoe='text' ng-model='rent' ng-pattern="regex")
+    span(ng-hide="rent") #{validationErrorMessage.isNumeric}
 
-    h2 ローン
-    p 借入金額(万円)：
+    h2 #{viewMessage.loan}
+    p #{viewMessage.loanAmount}：
     input(tyoe='text' ng-model='loan')
-    p 借入金利(年利)：
+    p #{viewMessage.rate}：
     input(tyoe='text' ng-model='rate')
-    p 借入期間(年)：
+    p #{viewMessage.loanPeriod}：
     input(tyoe='text' ng-model='year')
     br
     br
-    button(ng-click="onClick()") 送信
+    button(ng-click="onClick()") #{viewMessage.send}
 
   #expenseGraph(style='width: 480px; height: 400px;')
