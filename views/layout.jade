@@ -1,10 +1,19 @@
 doctype html
 html(lang='ja' ng-app='tortie')
   head
+    meta(charset='UTF-8')
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(language='javascript', type='text/javascript', src='/scripts/jquery.min.js')
+    link(rel='stylesheet', href='/bower/angular-ui-select/dist/select.css')
+    link(rel='stylesheet', href='/bower/Honoka/dist/css/bootstrap.css')
+    //link(rel='stylesheet',href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
     script(language='javascript', type='text/javascript', src='/bower/angular/angular.min.js')
+    script(language='javascript', type='text/javascript', src='/bower/angular-bootstrap/ui-bootstrap-tpls.js')
+    script(language='javascript', type='text/javascript', src='/bower/angular-ui-select/dist/select.js')
+    script(language='javascript', type='text/javascript', src='/bower/angular-sanitize/angular-sanitize.js')
     block scripts
   body
+    block header
+      .page-header
+        h1= title
     block content

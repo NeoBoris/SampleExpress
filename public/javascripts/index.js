@@ -1,4 +1,4 @@
-var tortieApp = angular.module('tortie',[]);
+var tortieApp = angular.module('tortie',['ui.bootstrap', 'ui.select', 'ngSanitize']);
 
 tortieApp.controller('MainController', ['$scope', '$http', function($scope, $http) {
     $scope.rent = 50000;
@@ -11,14 +11,15 @@ tortieApp.controller('MainController', ['$scope', '$http', function($scope, $htt
         ages.push(i);
     }
     $scope.ages = ages;
-    $scope.age = 30;
+    $scope.age = {};
+    $scope.age.selected = 30;
     $scope.onClick = function() {
         $http({
             method: 'POST',
             url: '/result',
             data: {
                 rent: $scope.rent,
-                age: $scope.age,
+                age: $scope.age.selected,
                 loan: $scope.loan * 10000,
                 rate: $scope.rate / 100,
                 year: $scope.year,
