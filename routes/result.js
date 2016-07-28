@@ -3,21 +3,36 @@ var calc = require('../lib/calc');
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
-    req.checkBody("rent","Enter a numeric only.").isNumeric();
+    // req.checkBody("rent","Enter a numeric only.").isNumeric();
     var errors = req.validationErrors();
 
-    var years = [];
-    var expenses = [];
-    if (errors === false) {
-        var rent = Number(req.body.rent);
-        var age = Number(req.body.age);
-
-        for (var i = 1; i <= 50; i++) {
-            years.push(age + i);
-            expenses.push(calc.getRentExpense(rent, i));
+    var yearPayments = [];
+    try {
+        if (errors === true) {
+            return;
         }
+
+        var year = 1;
+        for (var element of req.body.elements) {
+            for (var i = 0; i < element.period; i++) {
+                yearPayments.push({
+                    year: year,
+                    payment: calc.getRentExpense(element.payment, 1)
+                });
+                year++;
+            }
+        }
+    } catch (e) {
+        console.log(e);
+    } finally {
+        res.json ({
+            age: req.body.age,
+            yearPayments: yearPayments,
+            errors: errors,
+        });
     }
 
+/*
     var loan = Number(req.body.loan);
     var rate = Number(req.body.rate);
     var year = Number(req.body.year);
@@ -31,13 +46,7 @@ router.post('/', function(req, res, next) {
         }
         loanExpenses.push(loanExpense * (y * 12));
     }
-
-    res.json ({
-        years: years,
-        expenses: expenses,
-        loanExpenses: loanExpenses,
-        errors: errors,
-    });
+*/
 });
 
 module.exports = router;

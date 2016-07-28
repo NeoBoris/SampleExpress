@@ -7,35 +7,62 @@ append scripts
 append content
   div(ng-controller='MainController')
     form.form-horizontal
+      // 年齢
       .form-group
         label.col-sm-2.control-label #{viewMessage.age}:
         .col-sm-10
           div(ui-select, ng-model='age.selected')
-            div(ui-select-match placeholder='Select or input age in the list.') {{$select.selected}}
+            div(ui-select-match placeholder='#{viewMessage.inputAge}') {{$select.selected}}
             div(ui-select-choices, repeat="a in ages|filter:$select.search") {{a}}
+      hr
+      // 系列
+      ul.nav.nav-tabs
+        li.active(role='presentation')
+          a(href='#') #1
+        li(role='presentation')
+          button.btn.btn-default(type='button', aria-label='Left Align')
+            span.glyphicon.glyphicon-plus(aria-hidden='true')
+      // 
+      div(ng-repeat='e in elements')
+        div(ng-switch on='e.type')
+          // 賃貸
+          div(ng-switch-when='rent')
+            // 名称
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                h2 {{e.name}}
+            // 期間
+            .form-group
+              label.col-sm-2.control-label #{viewMessage.period}:
+              .col-sm-10
+                .input-group
+                  span.input-group-addon #{viewMessage.year}
+                  input.form-control(type='text' ng-model='e.period' ng-pattern="regex")
+                  span(ng-hide="e.period") #{validationErrorMessage.isNumeric}
+            // 家賃
+            .form-group
+              label.col-sm-2.control-label #{viewMessage.houseRent}:
+              .col-sm-10
+                .input-group
+                  span.input-group-addon ￥
+                  input.form-control(type='text' ng-model='e.payment' ng-pattern="regex")
+                  span(ng-hide="e.payment") #{validationErrorMessage.isNumeric}
+          div(ng-switch-when='loan') loan
+          div(ng-switch-default) default
+        hr
+      // タイプ
       br
-      legend #{viewMessage.rent}
       .form-group
-        label.col-sm-2.control-label #{viewMessage.houseRent}:
-        .col-sm-10
-          input.form-control(type='text' ng-model='rent' ng-pattern="regex")
-          span(ng-hide="rent") #{validationErrorMessage.isNumeric}
-      br
-      legend #{viewMessage.loan}
-      .form-group
-        label.col-sm-2.control-label #{viewMessage.loanAmount}：
-        .col-sm-10
-          input.form-control(type='text' ng-model='loan')
-      .form-group
-        label.col-sm-2.control-label #{viewMessage.rate}：
-        .col-sm-10
-          .input-group
-            span.input-group-addon %
-            input.form-control(type='text' ng-model='rate')
-      .form-group
-        label.col-sm-2.control-label #{viewMessage.loanPeriod}：
-        .col-sm-10
-          input.form-control(type='text' ng-model='year')
+        label.col-sm-2.control-label #{viewMessage.type}:
+        .col-sm-8
+          div(ui-select ng-model='type.selected')
+            div(ui-select-match placeholder='') {{$select.selected.name}}
+            div(ui-select-choices repeat="type in types|filter:$select.search") {{type.name}}
+        .col-sm-2
+          button.btn.btn-default(type='button', aria-label='Left Align' ng-click='onTypeClicked(type.selected)')
+            span.glyphicon.glyphicon-plus(aria-hidden='true')
+      hr
+      // 送信
       .form-group
         .col-sm-offset-2.col-sm-10
           button.btn.btn-primary(ng-click="onClick()") #{viewMessage.send}
