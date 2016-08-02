@@ -20,6 +20,11 @@
     "express-validator": "^2.20.8",
     "grunt": "^1.0.1",
     "grunt-mocha-test": "^0.12.7",
-    "mocha": "^2.5.3"
+    "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-protractor": "^3.0.0",
+    "gulp-webserver": "^0.9.1",
+    "mocha": "^2.5.3",
+    "run-sequence": "^1.2.2"
   }
 }

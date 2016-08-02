@@ -21,6 +21,7 @@
     "angular-sanitize": "^1.5.7"
   },
   "devDependencies": {
-    "Honoka": "v3.3.6-b"
+    "Honoka": "v3.3.6-b",
+    "livereload-js": "^2.2.1"
   }
 }
