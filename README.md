@@ -38,3 +38,23 @@
 ### 受け入れテスト実行
 
     gulp test:e2e
+
+---
+
+### typings
+
+1. typingsのインストール
+
+    sudo npm install -g typings  
+
+2. 検索  
+
+    sudo typings search protractor
+
+3. インストール
+
+    sudo typings install --save --global dt~angular-protractor  
+
+4. アンインストール  
+
+    sudo typings uninstall --save --global angular-protractor
