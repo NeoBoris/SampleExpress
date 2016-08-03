@@ -59,12 +59,31 @@ append content
             div(ui-select-match placeholder='') {{$select.selected.name}}
             div(ui-select-choices repeat="type in types|filter:$select.search") {{type.name}}
         .col-sm-2
-          button.btn.btn-default(type='button', aria-label='Left Align' ng-click='onTypeClicked(type.selected)')
+          button.btn.btn-default(type='button', aria-label='Left Align' ng-click='onTypeClicked(type.selected)' id='typeAddButton')
             span.glyphicon.glyphicon-plus(aria-hidden='true')
       hr
       // 送信
       .form-group
         .col-sm-offset-2.col-sm-10
-          button.btn.btn-primary(ng-click="onClick()") #{viewMessage.send}
+          button.btn.btn-primary(ng-click='onClick()' id='sendButton') #{viewMessage.send}
 
-  #expenseGraph(style='width: 480px; height: 400px;')
+      #paymentGraphArea(ng-show='isReceiveResult')
+        .col-sm-offset-2.col-sm-10
+          #paymentGraph(style='width: 480px; height: 400px;')
+
+      #paymentTableArea(ng-show='isReceiveResult')
+        .col-sm-offset-2.col-sm-10
+          .panel.panel-default
+            .panel-heading result
+            table.table.table-hover
+              thead
+                tr
+                  th #{viewMessage.age}
+                  th #{viewMessage.yearPayment}
+                  th #{viewMessage.totalPayment}
+              tbody
+                tr(ng-repeat='result in results')
+                  td {{result.age}}
+                  td {{result.yearPayment}}
+                  td {{result.totalPayment}}
+

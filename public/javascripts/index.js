@@ -60,6 +60,8 @@ tortieApp.controller('MainController', ['$scope', '$http', function($scope, $htt
     $scope.onTypeClicked = function(type) {
         $scope.elements.push(Element.create(type));
     };
+    $scope.results = [];
+    $scope.isReceiveResult = false;
     $scope.onClick = function() {
         $http({
             method: 'POST',
@@ -75,6 +77,7 @@ tortieApp.controller('MainController', ['$scope', '$http', function($scope, $htt
                 return;
             }
             updateExpenseGraph(data);
+            $scope.isReceiveResult = true;
         })
         .error(function(data, statuc, headers, config) {
             alert('Error');
@@ -84,15 +87,23 @@ tortieApp.controller('MainController', ['$scope', '$http', function($scope, $htt
     function updateExpenseGraph(data) {
         var age = data.age;
         var yearPayments = data.yearPayments;
+        
+        $scope.results = [];
+        var totalPayment = 0;
+        for (var p of yearPayments) {
+            totalPayment += p.payment;
+            $scope.results.push({
+                age: p.year + age,
+                yearPayment: p.payment,
+                totalPayment: totalPayment
+            });
+        }
 
         var ages = [];
         var totalYearPayments = [];
-        var totalYearPayment = 0;
-        for (var i in yearPayments) {
-            var yearPayment = yearPayments[i];
-            totalYearPayment += yearPayment.payment;
-            ages.push(age + yearPayment.year);
-            totalYearPayments.push(totalYearPayment);
+        for (var r of $scope.results) {
+            ages.push(r.age);
+            totalYearPayments.push(r.totalPayment);
         }
 
         var trace = {
@@ -110,19 +121,19 @@ tortieApp.controller('MainController', ['$scope', '$http', function($scope, $htt
         };
 */
         var layout = {
-            title:'総支払い額',
+            title:'総支払額',
             xaxis: {
                 title: '年齢'
             },
             yaxis: {
-                title: '総支払い額'
+                title: '総支払額'
             },
             height: 400,
             width: 480
         };
 
         var plotData = [trace];
-        Plotly.newPlot('expenseGraph', plotData, layout);
+        Plotly.newPlot('paymentGraph', plotData, layout);
     }
 
     function displayErrors(errors) {

@@ -24,7 +24,9 @@
             "rate": "借入金利(年利)",
             "loanPeriod": "借入期間(年)",
             "send": "送信",
-            "inputAge": "年齢を選択してください。"
+            "inputAge": "年齢を選択してください。",
+            "yearPayment": "年間支払額",
+            "totalPayment": "総支払額"
         }
     }
 }
