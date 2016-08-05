@@ -17,6 +17,7 @@
             },
             "rent": "賃貸",
             "year": "年",
+            "yen": "￥",
             "houseRent": "家賃",
             "period": "期間",
             "loan": "ローン",
@@ -26,7 +27,9 @@
             "send": "送信",
             "inputAge": "年齢を選択してください。",
             "yearPayment": "年間支払額",
-            "totalPayment": "総支払額"
+            "totalPayment": "総支払額",
+            "renewalCharge": "更新料",
+            "renewalInterval": "間隔"
         }
     }
 }

@@ -44,9 +44,32 @@ append content
               label.col-sm-2.control-label #{viewMessage.houseRent}:
               .col-sm-10
                 .input-group
-                  span.input-group-addon ￥
+                  span.input-group-addon #{viewMessage.yen}
                   input.form-control(type='text' ng-model='e.payment' ng-pattern="regex")
                   span(ng-hide="e.payment") #{validationErrorMessage.isNumeric}
+            // 更新料チェックボックス
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input#RenewalChargeCheck(type='checkbox' ng-model='e.isRenewalCharge')
+                    | #{viewMessage.renewalCharge}
+            // 更新料設定エリア
+            #RenewalChargeSettingsArea(ng-show='e.isRenewalCharge')
+              // 更新料
+              .form-group
+                label.col-sm-offset-2.col-sm-2.control-label #{viewMessage.renewalCharge}:
+                .col-sm-8
+                  .input-group
+                    span.input-group-addon #{viewMessage.yen}
+                    input#RenewalCharge.form-control(type='text' ng-model='e.renewalCharge')
+              // 更新料間隔
+              .form-group
+                label.col-sm-offset-2.col-sm-2.control-label #{viewMessage.renewalInterval}:
+                .col-sm-8
+                  .input-group
+                    span.input-group-addon #{viewMessage.year}
+                    input#RenewalInterval.form-control(type='text' ng-model='e.renewalInterval')
           div(ng-switch-when='loan') loan
           div(ng-switch-default) default
         hr
@@ -83,7 +106,7 @@ append content
                   th #{viewMessage.totalPayment}
               tbody
                 tr(ng-repeat='result in results')
-                  td {{result.age}}
-                  td {{result.yearPayment}}
-                  td {{result.totalPayment}}
+                  td#ResultAge {{result.age}}
+                  td#ResultYearPayment {{result.yearPayment}}
+                  td#ResultTotalPayment {{result.totalPayment}}
 

@@ -14,10 +14,16 @@ router.post('/', function(req, res, next) {
 
         var year = 1;
         for (var element of req.body.elements) {
-            for (var i = 0; i < element.period; i++) {
+            for (var i = 1; i <= element.period; i++) {
+                var payment = calc.getRentExpense(element.payment, 1);
+                if (element.isRenewalCharge) {
+                    if (i % element.renewalInterval === 0) {
+                        payment += element.renewalCharge;
+                    }
+                }
                 yearPayments.push({
                     year: year,
-                    payment: calc.getRentExpense(element.payment, 1)
+                    payment: payment
                 });
                 year++;
             }

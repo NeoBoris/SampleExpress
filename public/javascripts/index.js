@@ -23,6 +23,9 @@ class Rent extends Element {
         super(type, name);
         this.period = 5;
         this.payment = 80000;
+        this.isRenewalCharge = false;
+        this.renewalCharge = 160000;
+        this.renewalInterval = 2;
     }
 }
 
