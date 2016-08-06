@@ -34,9 +34,9 @@ gulp.task('reload',function(){
 gulp.task('watch',['server'],function(){
 	livereload.listen();
 	//サーバ再起動の対象にするファイル
-	gulp.watch(['js/*.js','app.js','routes/*'],['server']);
+	gulp.watch(['app.js','server/routes/*'],['server']);
 	//ブラウザリロードの対象にするファイル
-	gulp.watch(['public/*/*','views/*'],['reload']);
+	gulp.watch(['public/*/*','server/views/*'],['reload']);
 });
 
 gulp.task('protractor', function() {

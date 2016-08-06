@@ -6,15 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var validator = require('express-validator');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var result = require('./routes/result');
-var resources_index = require('./routes/resources/index');
+var routes = require('./server/routes/index');
+var result = require('./server/routes/result');
+var resources_index = require('./server/routes/resources/index');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, './server/views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -30,7 +29,6 @@ app.use('/bower', express.static(__dirname + '/bower_components'));
 app.use('/stylesheets', express.static(__dirname + '/public/stylesheets'));
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/result', result);
 app.use('/resources/index', resources_index);
 
