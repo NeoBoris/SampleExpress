@@ -1,4 +1,4 @@
-var calc = require('../lib/calc');
+var calc = require('../server/lib/calc');
 var should = require('chai').should();
 var expect = require('chai').expect;
 
