@@ -142,6 +142,7 @@ describe('受け入れテストサンプル', function() {
 
         // 賃貸追加
         element(by.id('typeAddButton')).click();
+        element(by.id('typeAddButton')).click();
 
         element.all(by.repeater('e in elements')).each(function(e, index){
             // 項目の削除
