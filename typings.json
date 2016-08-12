@@ -1,6 +1,17 @@
 {
   "globalDependencies": {
+    "angular": "registry:dt/angular#1.5.0+20160802155123",
     "angular-protractor": "registry:dt/angular-protractor#1.5.0+20160425143459",
-    "express-validator": "registry:dt/express-validator#2.9.0+20160412125233"
-  }
+    "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160805091045",
+    "express-validator": "registry:dt/express-validator#2.9.0+20160412125233",
+    "mocha": "registry:dt/mocha#2.2.5+20160720003353",
+    "node": "registry:dt/node#6.0.0+20160807145350"
+  },
+  "dependencies": {
+    "chai": "registry:npm/chai#3.5.0+20160723033700",
+    "express": "registry:npm/express#4.14.0+20160810205701",
+    "mongodb": "registry:npm/mongodb#2.1.0+20160721204323",
+    "serve-static": "registry:npm/serve-static#1.11.1+20160810053450"
+  },
+  "devDependencies": {}
 }
