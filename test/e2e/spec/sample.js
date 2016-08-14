@@ -102,8 +102,15 @@ describe('受け入れテストサンプル', function() {
         // 賃貸追加
         element(by.id('typeAddButton')).click();
 
+        // 項目が1つある
+        element.all(by.repeater('e in elements')).then(function(arr) {
+            expect(arr.length).toBe(1);
+        });
+
+        // 項目の削除
         element.all(by.repeater('e in elements')).each(function(e, index){
-            // 項目の削除
+            e.element(by.id('MenuButton')).click();
+            e.element(by.id('DeleteButton')).click();
         });
 
         // 項目が1つもない
@@ -123,13 +130,41 @@ describe('受け入れテストサンプル', function() {
         element(by.id('typeAddButton')).click();
         element(by.id('typeAddButton')).click();
 
-        element.all(by.repeater('e in elements')).each(function(e, index){
-            // 項目の削除
+        // 項目が1つある
+        element.all(by.repeater('e in elements')).then(function(arr) {
+            expect(arr.length).toBe(2);
         });
 
-        // 項目が1つもない
+        // 項目の設定
+        var rentPeriod = ['3', '4'];
+        var rentPayment = ['50000', '60000'];
+        element.all(by.repeater('e in elements')).each(function(e, index){
+            // 項目の削除
+            e.element(by.id('RentPeriod')).sendKeys(protractor.Key.BACK_SPACE, rentPeriod[index]);
+            e.element(by.id('RentPayment')).sendKeys(
+                protractor.Key.BACK_SPACE,
+                protractor.Key.BACK_SPACE,
+                protractor.Key.BACK_SPACE,
+                protractor.Key.BACK_SPACE,
+                protractor.Key.BACK_SPACE,
+                rentPayment[index]);
+        });
+
+        // 項目の削除
+        element.all(by.repeater('e in elements')).each(function(e, index){
+            if (index === 0) {
+                e.element(by.id('MenuButton')).click();
+                e.element(by.id('DeleteButton')).click();
+            }
+        });
+
+        // 項目が1つある
         element.all(by.repeater('e in elements')).then(function(arr) {
             expect(arr.length).toBe(1);
+        });
+        element.all(by.repeater('e in elements')).each(function(e, index){
+            expect(e.element(by.id('RentPeriod')).getAttribute('value')).toBe(rentPeriod[1]);
+            expect(e.element(by.id('RentPayment')).getAttribute('value')).toBe(rentPayment[1]);
         });
     });
 
@@ -146,6 +181,8 @@ describe('受け入れテストサンプル', function() {
 
         element.all(by.repeater('e in elements')).each(function(e, index){
             // 項目の削除
+            e.element(by.id('MenuButton')).click();
+            e.element(by.id('DeleteButton')).click();
         });
 
         // 項目が1つもない

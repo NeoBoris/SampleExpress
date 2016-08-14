@@ -24,6 +24,14 @@ append content
             span.glyphicon.glyphicon-plus(aria-hidden='true')
       // 
       div(ng-repeat='e in elements')
+        // 個別メニュー
+        .btn-group.col-sm-offset-11.col-sm-(uib-dropdown='', is-open='status.isopen')
+          button#MenuButton.btn.btn-primary(type='button', uib-dropdown-toggle='', ng-disabled='disabled')
+            span.glyphicon.glyphicon-menu-hamburger(aria-hidden='true')
+          ul.dropdown-menu(uib-dropdown-menu='', role='menu', aria-labelledby='single-button')
+            li(role='menuitem')
+              a(href='' ng-click='onDelete(e)' id='DeleteButton') Delete
+
         div(ng-switch on='e.type')
           // 賃貸
           div(ng-switch-when='rent')
@@ -37,7 +45,7 @@ append content
               .col-sm-10
                 .input-group
                   span.input-group-addon #{viewMessage.year}
-                  input.form-control(type='text' ng-model='e.period' ng-pattern="regex")
+                  input.form-control#RentPeriod(type='text' ng-model='e.period' ng-pattern="regex")
                   span(ng-hide="e.period") #{validationErrorMessage.isNumeric}
             // 家賃
             .form-group
@@ -45,7 +53,7 @@ append content
               .col-sm-10
                 .input-group
                   span.input-group-addon #{viewMessage.yen}
-                  input.form-control(type='text' ng-model='e.payment' ng-pattern="regex")
+                  input.form-control#RentPayment(type='text' ng-model='e.payment' ng-pattern="regex")
                   span(ng-hide="e.payment") #{validationErrorMessage.isNumeric}
             // 更新料チェックボックス
             .form-group

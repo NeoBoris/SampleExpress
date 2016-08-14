@@ -65,6 +65,14 @@ tortieApp.controller('MainController', ['$scope', '$http', function($scope, $htt
     };
     $scope.results = [];
     $scope.isReceiveResult = false;
+    $scope.onDelete = function(e) {
+        for (var i in $scope.elements) {
+            if (e === $scope.elements[i]) {
+                $scope.elements.splice(i, 1);
+                return;
+            }
+        }
+    };
     $scope.onClick = function() {
         $http({
             method: 'POST',
