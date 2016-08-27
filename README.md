@@ -16,6 +16,15 @@
 
 ### 導入(随時更新予定)
 
+####  npm
+
+    npm install
+
+####  bower
+
+    npm install -g bower 
+    bower install
+
 ####  gulp  
 
     npm install -g gulp  
@@ -58,3 +67,12 @@
 4. アンインストール  
 
     sudo typings uninstall --save --global angular-protractor
+
+### dockerを利用した動作確認
+
+    docker build -t tortie:1.0 ./
+    docker run -i -t -p 3000:3000 tortie:1.0
+
+githubから最新のコードをダウンロードし、サーバーの起動までが実行される。
+http://localhost:3000 にアクセスすればサイトが表示されるはず。
+
